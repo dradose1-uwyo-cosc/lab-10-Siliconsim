@@ -1,23 +1,22 @@
-# Your Name Here
+# Jake Huggins
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
-# your
-# comments
-# here
+# 11/18/2024
+# Lab 10
+# Lab Section: 14
+# Sources, people worked with, help given to: None
 
 #import modules you will need 
 
 from hashlib import sha256 
 from pathlib import Path
 
+file_contents = ""
+hash_content = ""
+unencrypted_password = ""
+
 def get_hash(to_hash):
     """You can use """
     return sha256(to_hash.encode('utf-8')).hexdigest().upper()
-
-
 
 # Files and Exceptions
 
@@ -33,11 +32,29 @@ def get_hash(to_hash):
 # You will need to include a try-except-catch block in your code.
 # - The reading of files needs to occur in the try blocks.
 
+try:
+    path = Path("hash")
+    hash_content = path.read_text()
+except FileNotFoundError:
+    print("File does not exit!")
 
 # - Read in the value stored within `hash`.
 #   - You must use a try and except block.
 
+try:
+    path = Path("rockyou.txt")
+    file_contents = path.read_text()
+    file_contents = file_contents.splitlines()
+except FileNotFoundError:
+    print("File does not exit!")
 
+for password in file_contents:
+    hashed = get_hash(password.strip())
+    if (hashed == hash_content):
+        unencrypted_password = password
+        break
+
+print(unencrypted_password)
 # Read in the passwords in `rockyou.txt`.
 # - Again, you need a try-except-else block.
 # Hash each individual password and compare it against the stored hash.
