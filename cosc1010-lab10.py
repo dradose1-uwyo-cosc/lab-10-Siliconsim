@@ -12,7 +12,6 @@ from pathlib import Path
 
 file_contents = ""
 hash_content = ""
-unencrypted_password = ""
 
 def get_hash(to_hash):
     """You can use """
@@ -51,10 +50,9 @@ except FileNotFoundError:
 for password in file_contents:
     hashed = get_hash(password.strip())
     if (hashed == hash_content):
-        unencrypted_password = password
+        print(f"The password is: {password}")
         break
 
-print(unencrypted_password)
 # Read in the passwords in `rockyou.txt`.
 # - Again, you need a try-except-else block.
 # Hash each individual password and compare it against the stored hash.
